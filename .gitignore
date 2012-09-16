@@ -1,0 +1,5 @@
+*.err
+*.sock
+node_modules/
+node
+nodeboot
