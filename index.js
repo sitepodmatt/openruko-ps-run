@@ -5,7 +5,6 @@ var async = require('async');
 var ioSocket = net.createConnection('/root/ps-run/io.sock');
 var commandSocket = net.createConnection('/root/ps-run/command.sock');
 
-
 commandSocket.on('error', function(err) {
   console.dir(err);
   throw err;
@@ -130,7 +129,7 @@ function spawn(payload, outputSocket, commandSocket, bashIt) {
                       {
                         env: payload.env_vars,
                         cwd: '/app',
-                        uid: 1666, //unprivileged user
+                        uid: 1666,
                         gid: 666
                       });
 
@@ -149,5 +148,6 @@ function spawn(payload, outputSocket, commandSocket, bashIt) {
     commandSocket.write('status: exit - ' + code + '\n');
     outputSocket.destroySoon();
   });
+
   return inst;
 }
